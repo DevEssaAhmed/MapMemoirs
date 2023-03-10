@@ -1,17 +1,23 @@
-import { Routes, Route, Navigate,} from "react-router-dom";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 
 import React from "react";
 import Users from "./users/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
+import MainNavigation from "./shared/MainNavigation/MainNavigation";
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Users />}>
-        <Route path="places/new" element={<NewPlace />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Route>
-    </Routes>
+    <>
+      <MainNavigation />
+      <Outlet />
+      <main>
+        <Routes>
+          <Route path="/" element={<Users />} />
+          <Route path="/places/new" element={<NewPlace />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </main>
+    </>
   );
 };
 
