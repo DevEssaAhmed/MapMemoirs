@@ -1,5 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
+import { CSSTransition } from "react-transition-group";
 import "./Modal.css";
 
 const modalHook = document.getElementById("modal-hook");
@@ -29,7 +30,15 @@ const ModalOverlay = (props) => {
 const Modal = (props) => {
   return (
     <>
-      <ModalOverlay {...props} />
+      <CSSTransition
+        in={props.show}
+        mountOnEnter
+        unmountOnExit
+        timeout={200}
+        classNames='modal'
+      >
+        <ModalOverlay {...props} />
+      </CSSTransition>
     </>
   );
 };
